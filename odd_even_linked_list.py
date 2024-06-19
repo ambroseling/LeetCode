@@ -9,6 +9,9 @@ class Solution(object):
         curr = head
         even = None
         even_head = None
+        # need to think abotu the edge cases where its all none
+        if curr is None or curr.next is None or curr.next.next is None:
+            return head
         while curr != None:
             if even_head is None:
                 even = curr.next
@@ -22,8 +25,13 @@ class Solution(object):
                     if curr.next.next is not None:
                         curr.next = curr.next.next 
                     else:
-                        curr.next = curr.next 
+                        curr.next = even_head
+                        even = None
+                        break 
                 else:
                     curr.next =  even_head
+                    even = None
                     break
             curr = curr.next
+        
+        return head
