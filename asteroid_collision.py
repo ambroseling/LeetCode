@@ -9,6 +9,7 @@ def solution(asteroids):
 
         # if the asteroid is going LEFT
         else:
+            # if there are no asteroids yet add it to the stack
             if len(stack) == 0:
                 stack.append(asteroids[i])
             else:

@@ -1,3 +1,5 @@
+
+#how to make this faster?
 def solution(arr,k):
     left = 0
     right = left + 1
@@ -27,3 +29,10 @@ if __name__ == "__main__":
     # 16 ms
 
 
+# [1,2,3,4]
+# {
+# 1:4
+# 
+# }
+
+# each pair you need to iterate at least through 
