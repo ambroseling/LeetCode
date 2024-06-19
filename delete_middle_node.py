@@ -31,3 +31,5 @@ if __name__ == "__main__":
    head = s.deleteMiddle(a)
    getattr(head,"next")
    print(head.next.val)
+
+   # need to optimizer for better cuz this is O(n+n)
