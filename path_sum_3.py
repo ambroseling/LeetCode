@@ -5,7 +5,7 @@ class Solution(object):
         :type targetSum: int
         :rtype: int
         """
-
+        
         def pathSum(node, currSum):
 
             if node is None or currSum is None:
