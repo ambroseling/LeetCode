@@ -1,7 +1,3 @@
-
-
-
-
 def solution(s):
     arr:list = s.split(" ")
     count:int = 0
