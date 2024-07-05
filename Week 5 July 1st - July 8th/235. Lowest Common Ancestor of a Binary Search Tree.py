@@ -5,6 +5,8 @@
 #         self.left = None
 #         self.right = None
 
+
+# Medium
 class Solution(object):
     def lowestCommonAncestor(self, root, p, q):
         """
@@ -14,7 +16,7 @@ class Solution(object):
         :rtype: TreeNode
         """
         # because its binary search tree, all values lower are on the left, and bigger on right.
-        # therefore, we can just when the first value, falls right in between both p and q, 
+        # therefore, we can just return the node which falls right in between both p and q, inclusive
         # as we are going top down
         if root.val > max(p.val,q.val):
             return self.lowestCommonAncestor(root.left, p,q)
