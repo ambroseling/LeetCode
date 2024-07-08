@@ -10,7 +10,7 @@ class WordDictionary(object):
         self.root = TrieNode()
 
 
-
+    # adding a word is an O(n) operation, n is length of word
     def addWord(self, word):
         cur = self.root
         for c in word: 
@@ -22,6 +22,8 @@ class WordDictionary(object):
         # Finally, mark the last character as end of the word 
         cur.word = True
     
+    # time complexity would be worst if we have n "."s AKA entire word is just ".....", O(26*n)
+    # as there are 26 characters, and you would have to explore each of them. 
     def search(self, word):
         ''' intuition:  
             we have the "." to worry about, so when that happens we simply 
