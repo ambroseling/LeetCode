@@ -11,6 +11,7 @@ class Solution(object):
         :type val: int
         :rtype: TreeNode
         """
+        import ipdb; ipdb.set_trace()
         def search(node):
             if node is None:
                 return None
@@ -41,3 +42,6 @@ class Solution(object):
         
         # result = search(root)
         # return result
+if __name__ == "__main__":
+    s = Solution()
+    s.searchBST()
