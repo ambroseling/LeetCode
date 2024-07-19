@@ -12,8 +12,15 @@ class SmallestInfiniteSet(object):
         if self.infset[1] < self.infset[2]:
             # swap with the samller child
             i = 0
-            while i < len(self.infset):
+            while 2*i+1 < len(self.infset):
                 (self.infset[2*i+1],self.infset[i]) = (self.infset[i],self.infset[2*i+1])
+                i = 2*i+1
+            self.infset.pop(-1)
+        else:
+            i = 0
+            while 2*i+2 < len(self.infset):
+                (self.infset[2*i+2],self.infset[i]) = (self.infset[i],self.infset[2*i+2])
+                i = 2*i+2
             self.infset.pop(-1)
 
     def addBack(self, num):
@@ -22,7 +29,7 @@ class SmallestInfiniteSet(object):
         :rtype: None
         """
         if num not in self.infset:
-            self.infset.append(num)
+            self.infset.append(num-1)
             i = len(self.infset)-1
             while self.infset[(i-1)/2] > self.infset[i]:
                 (self.infset[(i-1)/2],self.infset[i]) = (self.infset[i],self.infset[(i-1)/2])
@@ -40,3 +47,6 @@ class SmallestInfiniteSet(object):
 # - a[2i +1] gives you left child of node i
 # - a[2i +2] gives you right child of node i
 
+if __name__ == "__main__":
+    s = SmallestInfiniteSet()
+    s.popSmallest()
