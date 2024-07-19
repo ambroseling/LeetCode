@@ -48,7 +48,9 @@ def quicksort(array, low, high):
 
 # Driver code
 if __name__ == '__main__':
-    array = [10, 7, 8, 9, 1, 5]
+
+    import ipdb; ipdb.set_trace()
+    array = [10, 80,30,90,40,50,70]
     N = len(array)
 
     # Function call
@@ -57,4 +59,3 @@ if __name__ == '__main__':
     for x in array:
         print(x, end=" ")
 
-# This code is contributed by Adnan Aliakbar
