@@ -1,38 +1,23 @@
+class Solution(object):
+    def maxOperations(self, arr, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        left = 0
+        right = len(arr)-1
+        ops = 0
+        occur = {}
+        for i in range(len(arr)):
+            if arr[i] < k:
+                if arr[i] in occur:
+                    occur[arr[i]] +=1
+                else:
+                    occur[arr[i]] = 1
+                if( arr[i] in occur and (k-arr[i]) in occur and occur[arr[i]] >= 1 and occur[k-arr[i]]>= 1 and arr[i] != k-arr[i] ) or (arr[i] == k-arr[i] and occur[arr[i]] ==2 and k//2 == arr[i]):
+                    ops +=1
+                    occur[arr[i]] = occur[arr[i]] - 1
+                    occur[k-arr[i]] = occur[k-arr[i]] - 1 if k-arr[i] in occur else 0
 
-#how to make this faster?
-def solution(arr,k):
-    left = 0
-    right = left + 1
-    ops = 0
-    while right <= len(arr)-1 and left< len(arr)-1:
-        if arr[right]+arr[left] == k:
-            arr.pop(left)
-            arr.pop(right-1)
-            ops +=1
-            left = 0
-            right = left+1
-        else:
-
-            if right+1 > len(arr)-1:
-                left+=1
-                right = left+1
-            else:
-                right+=1
-
-    return ops
-
-if __name__ == "__main__":
-    nums= [3,1,3,4,3]
-    k = 6
-    output = solution(nums,k)
-    print(output)
-    # 16 ms
-
-
-# [1,2,3,4]
-# {
-# 1:4
-# 
-# }
-
-# each pair you need to iterate at least through 
+        return ops
