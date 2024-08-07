@@ -2,7 +2,7 @@ class Solution(object):
     def maxArea(self,arr):
         left = 0
         right = len(arr)-1
-        mvolume =0 
+        mvolume = 0 
         while left < right:
             volume = 0
             if right-1 >0 and (right - 1 - left) * (arr [left] if arr[left] < arr[right-1] else arr[right-1]) > mvolume:
