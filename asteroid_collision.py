@@ -49,15 +49,7 @@ if __name__ == "__main__":
     output = solution(asteroids)
     print(output)
 
-# -5
-#     # Testcases:  [3,-5,-1,1,2,-5]
-#     # Testcase : [-2,-1,1,2]
-#     # Testcase: [-2,-2,1,-2]
-
-
-# 5,1,3,-6
-# 10 2 -5
-
+# My original thinking: 
 # if the asteroid is going to the LEFT
     # if there is an asteroid in the stack that is going RIGHT && greater in size
     # collision will happen, all asteroids in btw are exploded
@@ -74,6 +66,25 @@ if __name__ == "__main__":
 
 
 
+# Somebody elses thinking:
+# your while loop can also have the condition of the top asteroid in stack
+# is opposite in sign with the one incoming, cuz only when theres opposite sign you want to loop
+
+# key thing is there is no need to immediately append to the stack when you do a comparison, 
+# when there are 
 
 
+# Model solution:
+for asteroid in asteroids:
+    while stack and asteroid < 0 < stack[-1]:
+        # this means that the incoming one is larger by abs value
+        if stack[-1] < -asteroid:
+            stack.pop() # remove the top one in stack since 
+            continue
+        elif stack[-1] == -asteroid:
+            stack.pop()
+        break
+    else:
+        stack.append(asteroid)
 
+        

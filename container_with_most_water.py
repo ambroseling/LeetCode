@@ -23,3 +23,15 @@ class Solution(object):
                 mvolume = volume
 
         return mvolume
+    
+# Their thinking
+# assume that the larger height always leads to larger area, which shd be true
+# so theres no need to compare the current volume with the next volume
+# so just assume higher height leads to bigger volume
+
+while left < right:
+    volume = min(height[left],height[right]) * (right-left)
+    if height[left] < height[right]:
+        left +=1
+    else:
+        right -=1
