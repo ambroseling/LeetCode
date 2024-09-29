@@ -1,18 +1,25 @@
 ## Data Structures and Algorithms Notes:
 
+> Some log laws:
+> $\log A^n = n log A$
+> $\log A + \log B = \log A B$
+> $\log \frac{A}{B} = \log A - \log B$
+> $a^{\log b} = b ^{log a}$
+
+
 ### Big O Notation
 - $\Omega$ - notation
     - when we only have an **asymptotic lower bound** for $f(n)$
     - For a given function $g(n)$, we denote by $O(g(n))$ the set of functions
     $$
-    \Omega(g(n)) = \{f(n): \text{There exists positive constants } c \text{ and } n_0 \text{ such that } 0 \lt c g(n) \lt f(n) \text{ for all } n \geq n_0\}
+    \Omega(g(n)) = \{f(n): \text{There exists **some** positive constants } c \text{ and } n_0 \text{ such that } 0 \lt c g(n) \lt f(n) \text{ for all } n \geq n_0\}
     $$
 - $O$ - notation
     - when we only have an **asymptotic upper bound** for $f(n)$
     - For a given function $g(n)$, we denote by $O(g(n))$ the set of functions
     $$
-    \Omega(g(n)) = \{f(n): \text{There exists positive constants } c \text{ and } n_0 \text{ such that } 0 \lt f(n) \lt c g(n)\}
-    $$
+    \Omega(g(n)) = \{f(n): \text{There exists **some** positive constants } c \text{ and } n_0 \text{ such that } 0 \lt f(n) \lt c g(n)\}
+    $$ 
 - $\Theta$ - notation
     - wrost case running time
     - when we have an **asymptotically tight bound** for $f(n)$
@@ -22,23 +29,25 @@
     $$
 
 - $o$ - notation
-    - For a given function $f(n)$, we define $o(g(n))$ as the set $o(g(n)) = \{ f(n) : \text{for any positive constant } c \gt 0, \text{ there exists a constant } n_0 \gt 0 \text{ such that } c g(n) \text{ for all } n \geq n_0\}$ 
+    - For a given function $f(n)$, we define $o(g(n))$ as the set $o(g(n)) = \{ f(n) : \text{for **any** positive constant } c \gt 0, \text{ there exists a constant } n_0 \gt 0 \text{ such that } c g(n) \text{ for all } n \geq n_0\}$ 
     - can also be defined by the limit $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0$
 - $\omega$ - notation
-    - For a given function $f(n)$, we define $\omega(g(n))$ as the set $o(g(n)) = \{ f(n) : \text{for any positive constant } c \gt 0, \text{ there exists a constant } n_0 \gt 0 \text{ such that } 0 \leq c g(n) \lt f(n) \text{ for all } n \geq n_0\}$ 
+    - For a given function $f(n)$, we define $\omega(g(n))$ as the set $o(g(n)) = \{ f(n) : \text{for **any** positive constant } c \gt 0, \text{ there exists a constant } n_0 \gt 0 \text{ such that } 0 \leq c g(n) \lt f(n) \text{ for all } n \geq n_0\}$ 
     - can also be defined by the limit $\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = \infty$ 
 
 ### Masters Algorithm
 - Let $a \geq 1$  and $b \gt 1$ be constants, let $f(n)$ be a function and let $T(n)$ be defined on the nonnegative integers by the recurrence $T(n) = a T(n/b) + f(n) $ where we interpret $n/b$ to mean either $\lfloor n/b \rfloor$ or $\lceil n/b \rceil$ 
-    - 1. if $f(n) = O(n^{log_b(a- \epsilon)})$ for some constant $\epsilon \gt  0$ , then $T(n) = \Theta(n^{log_b(a)})$
-    - 2. if $f(n) = O(n^{log_b(a )})$, then $T(n) = \Theta(n^{log_b(a) lg n})$
-    - 3. if $f(n) = \Omega(n^{log_b(a- \epsilon)})$ for some constant $\epsilon \gt  0$ , and if $af(n/b) \leq cf(n)$ for some constant $c \lt 1$ and all sufficient large n, then $T(n)  = \Theta(f(n))$
+    - 1. if $f(n) = O(n^{log_b(a)- \epsilon})$ for some constant $\epsilon \gt  0$ , then $T(n) = \Theta(n^{log_b(a)})$
+    - 2. if $f(n) = O(n^{log_b(a )})$, then $T(n) = \Theta(n^{log_b(a)} lg n)$
+    - 3. if $f(n) = \Omega(n^{log_b(a) + \epsilon})$ for some constant $\epsilon \gt  0$ , and if $af(n/b) \leq cf(n)$ for some constant $c \lt 1$ and all sufficient large n, then $T(n)  = \Theta(f(n))$
 - Very important lemma:
     - we can prove with a recursion tree
         - $T(n) = \{\Theta(n) \text{ if } n = 1, a T(n/b) + f(n) \text{ if } n = b^i\}$
         - where $i$ is a positive integer then 
         - $T(n) = \Theta(n^{log_b(a)}) + \Sigma_{j=0}^{log_b(n-1) a_j f(n/b^j)}$
     - 3 cases of masters theorem correspond to 
+- For uneven recurrences:
+    - https://cs.stackexchange.com/questions/79781/run-time-of-recurrence-with-five-uneven-calls
 ### Recurrences:
 - Method 1:  Substitution Method
     - guess a bound, use mathematical induction to prove our guess is correct
@@ -137,7 +146,7 @@ def quicksort(array, low, high):
 ```
 
 - Heap Sort:
-
+    - You maintain a heap
 ### Probabilistic Analysis
 - Algo is randomized if behvaiour is determined by input + values from random value generator
 - Hire Assistant example:
@@ -163,7 +172,21 @@ def quicksort(array, low, high):
     - Indicator random variable $I \{A\}$ associated with event A is defined as:
     - $I \{A\} = \{1 \text{ if A occurs }, 0 \text{ if A does not occur}\}$
     - Lemma 5.1: Given a sample space S and event A in the sample space S, let $X_A = I\{A\}$, then $E[X_A] = Pr\{A\}$
+
+
+### Trees
+Definitions
+1. A tree is an undirected graph in which any 2 vertices are connected with exactly one path
+2. Any connected graph who has n nodes with n-1 edges is a tree
+3. The degree of a vertex of a graph is the number of edges incident of the vertex
+4. A leaf is a vertex of degree 1 
+5. A path graph is a tree with 2 or more vertices that is not branched at all
+6. A tree is called a rooted tree if one vertex has been designated
+7. the height of a tree is the number of edges that form the longest path from root to leaf
+
+
 ### Binary Trees
+
 * Ways to do traversal:
     - In order (Left Root Right)
     - Pre-order (Root Left Right)
@@ -175,19 +198,29 @@ def quicksort(array, low, high):
 
 ### Stacks
 
+
+### Queues
+#### Circular Queues:
+
+
+
 ### Heaps
 - complete binary tree that satisfies heap property
 - 2 types: Max heap or min heap
+- Heap property:
+    - Max heap: $A[Parent[i]] \geq A[i]$
+    - Min heap: $A[Parent[i]] \leq A[i]$
 - Operations:
     - insert
     - extract
     - heapify
 - Binary heap:
     - represented as array
-    - `Arr[(i-1)/2]`: parent node
+    - `Arr[floor((i-1)/2)]`: parent node
     - `Arr[(2*i)+1]`: left child node
     - `Arr[(2*i)+2]`: right child node
 - Heapify:
+    - Recurrence is bounded by $T(n) \leq T(2n/3) + \Theta(1)$
 ```python
 # Method 1:
 def heapify(arr,n,i):

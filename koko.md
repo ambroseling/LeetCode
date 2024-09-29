@@ -9,11 +9,9 @@ $$
  \Sigma_{i=0}^{m} x_i + k -1 \le k \cdot h \\
 
  m \cdot k - m + \Sigma_{i=0}^{m} x_i \le k \cdot h \\
+ \frac{1}{h-m} \Sigma_{i=0}^{m} x_i - 1 \gt k \\
 
-\Sigma_{i=0}^{m} x_i \le m + k \cdot h - m \cdot k\\
 
-\Sigma_{i=0}^{m} x_i \le m + k \cdot h - m \cdot k\\
 
-\Sigma_{i=0}^{m} x_i \le m + k (h-m)\\
 
 $$
