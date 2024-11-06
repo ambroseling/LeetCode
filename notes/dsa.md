@@ -76,7 +76,7 @@ def merge(arr,left,mid,right):
     j = 0
     k = left
     while i < mid - left + 1 and j < right - mid:
-        if l[i] <= r[j] :
+        if l[i] <= r[j]:
             arr[k] = l[i]
             i+=1
         else:
@@ -87,7 +87,10 @@ def merge(arr,left,mid,right):
         arr[k] = l[i]
         i+=1
         k+=1
-    while j 
+    while j < right - mid:
+        arr[k] = r[j]
+        j+=1
+        k+=1
 
 def merge_sort(arr,left,right):
     if left < rightL:
@@ -147,6 +150,33 @@ def quicksort(array, low, high):
 
 - Heap Sort:
     - You maintain a heap
+    ```python
+    def max_heapify(array,n,i):
+        index = i
+        if 2*i < n and array[2*i] < array[2*i+1]:
+            index = 2*i
+        elif 2*i+1 < n and array[2*i] > array[2*i+1] :
+            index = 2*i+1
+        
+        if index != i:
+            array[i],array[index] = array[index],array[i]
+            max_heapify(array,n,index)
+
+    def extract_max(array):
+        array[0],array[-1] = array[-1],array[0]
+        max_heapify(array,n,i)
+
+    def heapsort(array,n):
+        #build the heap
+        build_max_heap(array)
+
+        # iterate through every node
+        for i in range(n-1,0,-1):
+            # at every iteration you extract the maximum element 
+            array[i],array[-1] = array[-1],array[i]
+
+            max_heapify(array,i,0)
+    ```
 ### Probabilistic Analysis
 - Algo is randomized if behvaiour is determined by input + values from random value generator
 - Hire Assistant example:
@@ -184,17 +214,105 @@ Definitions
 6. A tree is called a rooted tree if one vertex has been designated
 7. the height of a tree is the number of edges that form the longest path from root to leaf
 
-
 ### Binary Trees
 
 * Ways to do traversal:
     - In order (Left Root Right)
+        - used for sorting
     - Pre-order (Root Left Right)
+        - used for rotation
     - Post-order (Left Right Root)
+        - used for deleting
     - Level-order (BFS)
+
 * Binary Search Tree:
     - each node has L and R child, L is always less than self, R is always greater than self
+    - if a Binary Search Tree has n nodes, h = O(n)
+    - Only if the BST is balanced, h = O(log(n))
+* Finding the minimum:
+```python
+def minimum(x):
+    while x.left != None:
+        x = x.left
+    return x
+```
+* Finding the maximum:
+```python
+def maximum(x):
+    while x.right != None:
+        x = x.right
+    return x
+```
+* Finding predecessor (the element right before it):
+```python
+def predecessor(x):
+    if x.left != None:
+        return maximum(x):
+    y = parent(x)
+    while y != None and x == y.right:
+        x = y
+        y = parent(y)
+    return y
+```
+* Finding Sucecssor (the element right after it):
+```python
+def successor(x):
+    if x.right != None:
+        return minimum(x)
+    y = parent(x)
+    while y != None and x == y.left:
+        x = y
+        y = parent(y)
+```
+* Search
+```python
+def search(x,k):
+    if x == None or x.key == k:
+        return x
+    if x.key > k:
+        search(x.left,k)
+    if x.key < k:
+        search(x.right,k)
+```
+
+* Insert
+```python
+def insert(root,z):
+    y = None, x = root
+    while x != None:
+        y = x # find where z should connect
+        # if value you want to insert is smaller than current node
+        if z.key < x.key:
+            # go left
+            x = x.left
+        # if value you want to insert is greater than current node
+        else:
+            # go right
+            x = x.right
+    
+    # parent of the node we want to insert is set to y
+    parent(z) = y
+    # if 
+    if y == None:
+        root = z
+    elif z.key < y.key:
+        y.left = z
+    else:
+        y.right = z
+```
+* Delete 
+```python
+def delete():
+
+```
+- Case 1:
     - 
+- Case 2:
+    - 
+- Case 3:
+    -  
+### Red Black Trees
+
 
 ### Stacks
 
@@ -293,7 +411,6 @@ def view(arr)
 - In python: 
     - hash maps are implemented as dictionaries
     - note that dictionaries, lists, sets are not hashable, since they are inherently mutable
-    -  
      
 ### Depth First Search
 - Explores as far down a branch as possible before backtracking
@@ -334,3 +451,25 @@ while queue:
 ```
 
 ### Dijkstras algorithm
+
+### Greedy Algorithms
+* make locally optimal decisions at each steo, locked in and never revisited later
+* Greedy choice property:
+    * there is an optimal solution that agrees with the first greedy choice the algorithm makes.
+* Inductive Proof of optimality:
+    - Make the first greedy choice on problem (call it $P_n$), reducing the problem to a smaller subproblem (call it $P_{n-1}$)
+    - there is an optimal solution to $P_n$ that agrees with this choice by the greedy choice property.
+    - recursively solve the smaller subproblem $P_{n-1}$ to get a solution $S_{n-1}$  
+    - By optimal substructure, if $S_{n-1}$ is optimal, adding the greedy choice to it yields an optimal solution to $P_n$.
+    - Since $P_{n-1}$ is the same type of problem as $P_n$, it also has the greedy choice property
+    - Make the first greedy choice for $P_{n-1}$, it agrees with an optimal solution to $P_{n-1}$ and reduces the problem to a smaller subproblem $P_{n-2}$
+    - Repeat until there is no smaller subproblem
+
+
+### Dynamic Programming
+ FAST method:
+ 1. First Solution
+ 2. Analyze the first solution
+ 3. Identify the subproblems
+ 4. Turn the solution around
+ 
